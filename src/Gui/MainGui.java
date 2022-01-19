@@ -28,25 +28,28 @@ public class MainGui extends Application {
     private Node buldCenterPane() {
         TabPane tabPane = new TabPane();
         tabPane.getTabs().addAll(buildBankTab(),buildUnternemenTab(),buildWieTab());
-        tabPane.setTooltip(new Tooltip("Tabs for switch the layer"));
         return tabPane;
     }
 
     private Tab buildBankTab() {
         Tab tab = new Tab("Bank");
         tab.setClosable(false);
+        tab.setTooltip(new Tooltip("Bank Mony Graph"));
+        //TODO  tab.setContent();
         return tab;
     }
 
     private Tab buildUnternemenTab() {
         Tab tab = new Tab("Untenemen");
+      //TODO  tab.setContent();
         tab.setClosable(false);
         return tab;
     }
 
     private Tab buildWieTab() {
         Tab tab = new Tab("wie");
-        tab.setClosable(false);
+         tab.setClosable(false);
+        //TODO  tab.setContent();
         return tab;
     }
 
