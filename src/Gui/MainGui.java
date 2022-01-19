@@ -41,13 +41,15 @@ public class MainGui extends Application {
 
     private Tab buildUnternemenTab() {
         Tab tab = new Tab("Untenemen");
+        tab.setTooltip(new Tooltip("Shares of companies"));
       //TODO  tab.setContent();
         tab.setClosable(false);
         return tab;
     }
 
     private Tab buildWieTab() {
-        Tab tab = new Tab("wie");
+        Tab tab = new Tab("How");
+        tab.setTooltip(new Tooltip("HOW"));
          tab.setClosable(false);
         //TODO  tab.setContent();
         return tab;
