@@ -92,7 +92,10 @@ public class MainGui extends Application {
 
     private Node buildHinzufügenbutton() {
         Button btn = new Button("Add");
-        //TODO Funktionen
+        btn.setOnAction(event -> {
+
+            input.setText("");
+        });
         return btn;
     }
 
