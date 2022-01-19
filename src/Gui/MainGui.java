@@ -43,9 +43,14 @@ public class MainGui extends Application {
 
     private Node buildBankmonyTapContent() {
         BorderPane borderPane = new BorderPane();
-       //TODO borderPane.setCenter(buildBankmonyGraph());
+       borderPane.setCenter(buildBankmonyGraph());
         borderPane.setLeft(buldLeftborderpane());
         return borderPane;
+    }
+
+    private Node buildBankmonyGraph() {
+
+        return null;
     }
 
     private Node buldLeftborderpane() {
