@@ -35,8 +35,12 @@ public class MainGui extends Application {
         Tab tab = new Tab("Bank");
         tab.setClosable(false);
         tab.setTooltip(new Tooltip("Bank Mony Graph"));
-        //TODO  tab.setContent();
+        tab.setContent(buildBankmonyTapContent());
         return tab;
+    }
+
+    private Node buildBankmonyTapContent() {
+        BorderPane borderPane = new BorderPane();
     }
 
     private Tab buildUnternemenTab() {
