@@ -126,7 +126,8 @@ public class MainGui extends Application {
                 }
                     list.add(tmp);
                 if (list.getLast() < tmp){
-                    //TODO Ausgabe einfügen
+                    //TODO Ausgaben einfügen
+                    //TODO eigenen Anzeige darstellen
                 }
 
                 input.setText("");
