@@ -125,7 +125,9 @@ public class MainGui extends Application {
                     count++;
                 }
                     list.add(tmp);
-                //TODO unternemen das da zu kekommen geld an rechenen
+                if (list.getLast() < tmp){
+                    //TODO Ausgabe einfügen
+                }
 
                 input.setText("");
 
