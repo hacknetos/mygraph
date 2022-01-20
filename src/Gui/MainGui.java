@@ -106,6 +106,7 @@ public class MainGui extends Application {
 
     private Node buildInputFild() {
         input = new Numberfield();
+        input.setPromptText("geben sie ihren betragein");
         input.setAlignment(Pos.CENTER);
         return input;
     }
