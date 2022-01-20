@@ -163,10 +163,10 @@ public class MainGui extends Application {
     private Node buildUntenemensGraph() {
         ObservableList UntenemenDatern =
                 FXCollections.observableArrayList(
-                    new PieChart.Data("Uggel",30),
-                    new PieChart.Data("flappel",50),
-                    new PieChart.Data("Potstar",30),
-                    new PieChart.Data("other",30)
+                    new PieChart.Data("Uggel",500),
+                    new PieChart.Data("flappel",1000),
+                    new PieChart.Data("Potstar",10),
+                    new PieChart.Data("other",10000)
                 );
         PieChart pieChart = new PieChart(UntenemenDatern);
         pieChart.setTitle("untermens anteile");
