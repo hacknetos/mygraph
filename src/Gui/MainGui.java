@@ -1,7 +1,9 @@
 package Gui;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableListBase;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -91,7 +93,14 @@ public class MainGui extends Application {
     private Node buidinputfildUnternemen() {
         ComboBox<String> comboBox = new ComboBox<String>();
         comboBox.setTooltip(new Tooltip("Selcet the Comperny"));
-        //TODO Funktionen
+        ObservableList unternemen = FXCollections.observableArrayList(
+                "Uggel",
+                "Flappel",
+                "Potstar",
+                "Ohter"
+        );
+
+        comboBox.setItems(unternemen);
         return comboBox;
     }
 
@@ -116,6 +125,7 @@ public class MainGui extends Application {
                     count++;
                 }
                     list.add(tmp);
+                //TODO unternemen das da zu kekommen geld an rechenen
 
                 input.setText("");
 
