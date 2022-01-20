@@ -1,6 +1,7 @@
 package Gui;
 
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -14,11 +15,17 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import Gui.Numberfield;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListResourceBundle;
 
 public class MainGui extends Application {
     Numberfield input;
     String selectetunter;
+    LinkedList<Integer> list = new LinkedList<Integer>();
     XYChart.Series series ;
+    int count = 0;
     @Override
     public void start(Stage primaryStage){
         BorderPane mainpaPane = new BorderPane();
@@ -66,6 +73,10 @@ public class MainGui extends Application {
         series.getData().add(new XYChart.Data(1,1000));
         series.getData().add(new XYChart.Data(2,100));
         series.getData().add(new XYChart.Data(3,400));
+        list.add(1000);
+        list.add(100);
+        list.add(400);
+
         lineChart.getData().add(series);
         return lineChart;
     }
@@ -94,7 +105,20 @@ public class MainGui extends Application {
         Button btn = new Button("Add");
         btn.setOnAction(event -> {
 
-            input.setText("");
+                int tmp = Integer.parseInt(input.getText());
+
+                if (list.getLast() != tmp) {
+                    if (count>0){
+                        series.getData().add(new XYChart.Data(list.size(),list.getLast()));
+                    }
+                    series.getData().add(new XYChart.Data(list.size() + 1, tmp));
+                }else {
+                    count++;
+                }
+                    list.add(tmp);
+
+                input.setText("");
+
         });
         return btn;
     }
