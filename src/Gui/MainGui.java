@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
@@ -140,9 +141,36 @@ public class MainGui extends Application {
     private Tab buildUnternemenTab() {
         Tab tab = new Tab("Untenemen");
         tab.setTooltip(new Tooltip("Shares of companies"));
-      //TODO  tab.setContent();
+        tab.setContent(buildUnternemenTabConten());
         tab.setClosable(false);
         return tab;
+    }
+
+    private Node buildUnternemenTabConten() {
+        BorderPane unterPane = new BorderPane();
+        unterPane.setLeft(buldLeftUnterPane());
+       //TODO unterPane.setRight();
+        return unterPane;
+    }
+
+    private Node buldLeftUnterPane() {
+        VBox vBox = new VBox(15);
+        vBox.getChildren().add(buildUntenemensGraph());
+        return vBox;
+
+    }
+
+    private Node buildUntenemensGraph() {
+        ObservableList UntenemenDatern =
+                FXCollections.observableArrayList(
+                    new PieChart.Data("Uggel",30),
+                    new PieChart.Data("flappel",50),
+                    new PieChart.Data("Potstar",30),
+                    new PieChart.Data("other",30)
+                );
+        PieChart pieChart = new PieChart(UntenemenDatern);
+        pieChart.setTitle("untermens anteile");
+        return pieChart;
     }
 
     private Tab buildWieTab() {
