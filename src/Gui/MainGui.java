@@ -26,10 +26,13 @@ import java.util.ListResourceBundle;
 public class MainGui extends Application {
     Numberfield input;
      int selectetunter = 0;
+     String unterName = "";
     LinkedList<Integer> list = new LinkedList<Integer>();
     XYChart.Series series ;
     int count = 0;
-    ObservableList<Integer> unterEinArray = FXCollections.observableArrayList(0, 0, 0, 0);
+
+
+
     @Override
     public void start(Stage primaryStage){
         BorderPane mainpaPane = new BorderPane();
@@ -104,6 +107,8 @@ public class MainGui extends Application {
 
         comboBox.setOnAction(event -> {
             selectetunter = comboBox.getSelectionModel().getSelectedIndex();
+            unterName = comboBox.getSelectionModel().getSelectedItem();
+            System.out.println(selectetunter +" "+ comboBox.getSelectionModel().getSelectedItem());
         });
 
         comboBox.setItems(unternemen);
@@ -120,20 +125,24 @@ public class MainGui extends Application {
     private Node buildHinzufügenbutton() {
         Button btn = new Button("Add");
         btn.setOnAction(event -> {
-
-                int tmp = Integer.parseInt(input.getText());
+            int tmp = 0;
+            if (input.getText() != "")
+                tmp = Integer.parseInt(input.getText());
+            else
+                tmp = 0;
 
                 if (list.getLast() != tmp) {
-                    if (count>0){
+                    if (count>0)
                         series.getData().add(new XYChart.Data(list.size(),list.getLast()));
-                    }
+
                     series.getData().add(new XYChart.Data(list.size() + 1, tmp));
                 }else {
                     count++;
                 }
 
                 if (list.getLast() < tmp){
-                    unterEinArray.set(selectetunter, Integer.parseInt(input.getText())-list.getLast());
+
+
 
                 }
                 list.add(tmp);
@@ -169,10 +178,10 @@ public class MainGui extends Application {
     private Node buildUntenemensGraph() {
         ObservableList UntenemenDatern =
                 FXCollections.observableArrayList(
-                    new PieChart.Data("Uggel",unterEinArray.get(0)),
-                    new PieChart.Data("flappel",unterEinArray.get(1)),
-                    new PieChart.Data("Potstar",unterEinArray.get(2)),
-                    new PieChart.Data("other",unterEinArray.get(3))
+                        new PieChart.Data("Uggel",0),
+                        new PieChart.Data("flappel",0),
+                        new PieChart.Data("Potstar",0),
+                        new PieChart.Data("other",0)
                 );
         PieChart pieChart = new PieChart(UntenemenDatern);
         pieChart.setTitle("untermens anteile");
