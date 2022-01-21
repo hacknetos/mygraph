@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
@@ -24,10 +25,11 @@ import java.util.ListResourceBundle;
 
 public class MainGui extends Application {
     Numberfield input;
-    String selectetunter;
+     int selectetunter = 0;
     LinkedList<Integer> list = new LinkedList<Integer>();
     XYChart.Series series ;
     int count = 0;
+    ObservableList<Integer> unterEinArray = FXCollections.observableArrayList(0, 0, 0, 0);
     @Override
     public void start(Stage primaryStage){
         BorderPane mainpaPane = new BorderPane();
@@ -100,6 +102,10 @@ public class MainGui extends Application {
                 "Ohter"
         );
 
+        comboBox.setOnAction(event -> {
+            selectetunter = comboBox.getSelectionModel().getSelectedIndex();
+        });
+
         comboBox.setItems(unternemen);
         return comboBox;
     }
@@ -125,11 +131,12 @@ public class MainGui extends Application {
                 }else {
                     count++;
                 }
-                    list.add(tmp);
+
                 if (list.getLast() < tmp){
-                    //TODO Ausgaben einfügen
-                    //TODO eigenen Anzeige darstellen
+                    unterEinArray.set(selectetunter, Integer.parseInt(input.getText())-list.getLast());
+
                 }
+                list.add(tmp);
 
                 input.setText("");
 
@@ -140,9 +147,36 @@ public class MainGui extends Application {
     private Tab buildUnternemenTab() {
         Tab tab = new Tab("Untenemen");
         tab.setTooltip(new Tooltip("Shares of companies"));
-      //TODO  tab.setContent();
+        tab.setContent(buildUnternemenTabConten());
         tab.setClosable(false);
         return tab;
+    }
+
+    private Node buildUnternemenTabConten() {
+        BorderPane unterPane = new BorderPane();
+        unterPane.setLeft(buldLeftUnterPane());
+       //TODO unterPane.setRight();
+        return unterPane;
+    }
+
+    private Node buldLeftUnterPane() {
+        VBox vBox = new VBox(15);
+        vBox.getChildren().add(buildUntenemensGraph());
+        return vBox;
+
+    }
+
+    private Node buildUntenemensGraph() {
+        ObservableList UntenemenDatern =
+                FXCollections.observableArrayList(
+                    new PieChart.Data("Uggel",unterEinArray.get(0)),
+                    new PieChart.Data("flappel",unterEinArray.get(1)),
+                    new PieChart.Data("Potstar",unterEinArray.get(2)),
+                    new PieChart.Data("other",unterEinArray.get(3))
+                );
+        PieChart pieChart = new PieChart(UntenemenDatern);
+        pieChart.setTitle("untermens anteile");
+        return pieChart;
     }
 
     private Tab buildWieTab() {
